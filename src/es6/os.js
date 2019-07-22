@@ -110,4 +110,6 @@ export default {
   loadavg: loadavg,
   hostname: hostname,
   endianness: endianness,
+  arch: arch,
+  platform: platform,
 }
