@@ -16,6 +16,7 @@ export function blobConstructor() {
 var xhr;
 
 function checkTypeSupport(type) {
+  if (!global.XMLHttpRequest) return false;
   if (!xhr) {
     xhr = new global.XMLHttpRequest()
     // If location.host is empty, e.g. if this page/worker was loaded
@@ -42,7 +43,7 @@ export var arraybuffer = haveArrayBuffer && checkTypeSupport('arraybuffer')
 export var msstream = !hasFetch && haveSlice && checkTypeSupport('ms-stream')
 export var mozchunkedarraybuffer = !hasFetch && haveArrayBuffer &&
   checkTypeSupport('moz-chunked-arraybuffer')
-export var overrideMimeType = isFunction(xhr.overrideMimeType)
+export var overrideMimeType = xhr && isFunction(xhr.overrideMimeType)
 export var vbArray = isFunction(global.VBArray)
 
 function isFunction(value) {
